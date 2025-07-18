@@ -1,0 +1,486 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lingoverse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/04b-03" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Orbitron', sans-serif;
+      font-Size : "1.5rem";
+      height: 100vh;
+      margin: 0;
+      /* Start gradient */
+      background: linear-gradient(-45deg,
+      #ee7752,
+      #e73c7e,
+      #23a6d5,
+      #23d5ab,
+      #ff7eb3,
+      #65d6ce,
+      #f9ed69,
+      #f08a5d
+    );
+      background-size: 900% 900%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    .screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .active {
+      display: flex;
+    }
+    @font-face {
+      font-family: 'PixelFont';
+      src: url('./IntraNet.otf') format('opentype');
+    }
+    h1 {
+      font-family: 'PixelFont'; /* pixel retro font */
+      font-size: 4rem;
+      margin-bottom: 10px;
+      color: #fff; /* will change with JS */
+      text-shadow: 5px 5px 0 #000;
+      letter-spacing: 2px;
+      transition:
+        color 0.5s ease,
+        text-shadow 0.5s ease;
+      
+      /* Make text crisp */
+      image-rendering: pixelated;
+      -webkit-font-smoothing: none;
+      font-smooth: never;
+    }    
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 300;
+      margin-bottom: 30px;
+    }
+    .retro-text {
+      font-family: 'PixelFont';
+      font-size: 64px;
+      text-shadow: 4px 4px 0 #000, 6px 6px 0 #333;
+      letter-spacing: 2px;
+      position: relative;
+      -webkit-font-smoothing: none;
+      font-smooth: never;
+      transition: text-shadow 0.5s ease, background 0.5s ease;
+      background: var(--gradient, linear-gradient(270deg, #f06, #3cf, #0ff, #f06));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+
+      background-size: 400% 400%;
+      animation: moveBG 5s ease infinite;
+    }
+    
+    @keyframes moveBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    h1.retro-text {
+      font-family: 'PixelFont'; /* or your pixel font */
+      font-size: 8vw; /* multiple of 8 for pixel crispness */
+      position: relative;
+      color: #fff; /* fallback */
+      text-shadow: 2px 2px 0 #000, 4px 4px 0 #333;
+      letter-spacing: 2px;
+      -webkit-font-smoothing: none;
+      font-smooth: never;
+      transition: text-shadow 0.5s ease;
+    }
+
+    h1.retro-text::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #f06, #3cf);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
+      transition: background 0.5s ease;
+    }    
+    
+    button {
+      font-family: 'Orbitron', sans-serif;
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #00c9ff;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: rgb(255, 48, 255);
+    }
+
+    .card {
+    position: relative;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #00c9ff;
+    color: white; /* ensure text is white */
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 100%;
+  background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
+  animation: rotBGimg 3s linear infinite;
+}
+
+.card span {
+  position: relative;
+  z-index: 1;
+}
+
+button.card {
+  padding: 15px 30px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  background: none; /* no normal background */
+}
+
+    @keyframes rotBGimg {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    
+    .card::after {
+      content: "";
+      position: absolute;
+      background: #07182e;
+      inset: 5px;
+      border-radius: 15px;
+    }
+    #score, #streak {
+      position: absolute;
+      top: 10px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 1.2rem;
+    }
+    #score {
+      left: 10px;
+    }
+    #streak {
+      right: 10px;
+    }
+    #wordList {
+      margin-top: 20px;
+      display: none;
+      max-height: 200px;
+      overflow-y: auto;
+      background: rgba(255,255,255,0.1);
+      padding: 10px;
+      border-radius: 10px;
+    }
+    #changing-text {
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    
+  </style>
+</head>
+<body>
+  <audio id="bg-music" src="bgm.mp3" autoplay loop></audio>
+  <script>
+  const bgMusic = document.getElementById('bg-music');
+  // volume from 0.0 to 1.0
+  function startMusic() {
+    bgMusic.play()
+    bgMusic.volume = 0.2; 
+    // Remove the listener after first play
+  }
+
+  // Listen for ANY click on the page
+  </script>
+  <div id="score">Score: 0</div>
+  <div id="streak">Streak: 0</div>  <!-- Welcome Screen -->  <div id="home" class="screen active">
+    
+    <h1 class="retro-text">Lingoverse</h1>
+    <script>
+      const gradients = [
+  "linear-gradient(45deg, #00ffff, #3cf)",
+  "linear-gradient(45deg, #ff00ff, #f06)",
+  "linear-gradient(45deg, #ffff00, #ff0)",
+  "linear-gradient(45deg, #00ff00, #0f0)",
+  "linear-gradient(45deg, #ff0000, #f00)"
+];
+
+let index = 0;
+const title = document.querySelector('.retro-text');
+
+
+    </script>
+
+    <h2 id="changing-text">The Game</h2>
+    <script>
+      const phrases = [
+        "Desi words",
+        "Level Up Language",
+        "Global lingo",
+        "Total swag"
+      ];
+    
+      let phraseIndex = 0;
+  const h2 = document.getElementById("changing-text");
+
+// Apply styling purely with JS:
+h2.style.fontFamily = "'Orbitron', sans-serif";
+h2.style.fontWeight = "100"; // Light
+h2.style.fontSize = "1.8rem";
+h2.style.color = "#2E0854"; // deep purple
+h2.style.textShadow = `
+  -1px -1px 0 #000,
+   1px -1px 0 #000,
+  -1px  1px 0 #000,
+   1px  1px 0 #000,
+   0 0 2px #2E0854
+`;
+
+h2.style.letterSpacing = "2px";
+h2.style.fontWeight = "bold";
+
+  setInterval(() => {
+    // Fade out
+    h2.style.opacity = 0;
+
+    setTimeout(() => {
+      // Change text when faded out
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      h2.textContent = phrases[phraseIndex];
+      // Fade back in
+      h2.style.opacity = 1;
+    }, 500); // Match this to CSS transition duration (0.5s)
+  }, 3000); // Total time for each phrase
+</script>
+    
+    <button class=card onclick="startGame('normal')"><span>Individual Mode</span></button>
+    <button class=card onclick="startGame('normal')"><span>Team Mode</span></button>
+    <button class=card onclick="startGame('challenge')"><span>Challenge Mode</span></button>
+    
+  </div>  <!-- Game Screen -->  
+  <div id="game" class="screen">
+    <div id="questionText"></div>
+    <div id="options"></div>
+    <div id="feedback"></div>
+    <button onclick="showWordList()">View Word List</button>
+    <button onclick="nextRound()">🎲 Random Word</button>
+    <button id="continueBtn" onclick="nextRound()">Continue</button>
+    <div id="wordList"></div>
+  </div>  <!-- Challenge End Screen -->  
+  <div id="challengeEnd" class="screen">
+    <h1>Challenge Over!</h1>
+    <div id="finalScore"></div>
+    <div id="compliment"></div>
+    <button onclick="goHome()">Return to Home</button>
+  </div>  <script>
+    const languages = ["german", "spanish", "telugu", "tamil", "malayalam", "french", "indonesian", "punjabi", "gujarati", "marathi", "bihari"];
+
+    const wordBank = {
+      dog: { german: "Hund", spanish: "perro", telugu: "కుక్క", tamil: "நாய்", malayalam: "നായ", french: "chien", indonesian: "anjing", punjabi: "ਕੁੱਤਾ", gujarati: "કૂતરો", marathi: "कुत्रा", bihari: "कुकुर" },
+      cat: { german: "Katze", spanish: "gato", telugu: "పిల్లి", tamil: "பூனை", malayalam: "പൂച്ച", french: "chat", indonesian: "kucing", punjabi: "ਬਿੱਲੀ", gujarati: "બિલાડી", marathi: "मांजर", bihari: "बिल्ली" },
+      sun: { german: "Sonne", spanish: "sol", telugu: "సూర్యుడు", tamil: "சூரியன்", malayalam: "സൂര്യൻ", french: "soleil", indonesian: "matahari", punjabi: "ਸੂਰਜ", gujarati: "સૂર્ય", marathi: "सूर्य", bihari: "सूरज" },
+      moon: { german: "Mond", spanish: "luna", telugu: "చంద్రుడు", tamil: "சந்திரன்", malayalam: "ചന്ദ്രൻ", french: "lune", indonesian: "bulan", punjabi: "ਚੰਦ", gujarati: "ચંદ્ર", marathi: "चंद्र", bihari: "चाँद" },
+      water: { german: "Wasser", spanish: "agua", telugu: "నీరు", tamil: "தண்ணீர்", malayalam: "വെള്ളം", french: "eau", indonesian: "air", punjabi: "ਪਾਣੀ", gujarati: "પાણી", marathi: "पाणी", bihari: "पानी" },
+      fire: { german: "Feuer", spanish: "fuego", telugu: "అగ్ని", tamil: "தீ", malayalam: "അഗ്നി", french: "feu", indonesian: "api", punjabi: "ਅੱਗ", gujarati: "અગ્નિ", marathi: "आग", bihari: "आग" },
+      earth: { german: "Erde", spanish: "tierra", telugu: "భూమి", tamil: "பூமி", malayalam: "ഭൂമി", french: "terre", indonesian: "bumi", punjabi: "ਧਰਤੀ", gujarati: "પૃથ્વી", marathi: "पृथ्वी", bihari: "धरती" },
+      tree: { german: "Baum", spanish: "árbol", telugu: "చెట్టు", tamil: "மரம்", malayalam: "മരം", french: "arbre", indonesian: "pohon", punjabi: "ਰੁੱਖ", gujarati: "વૃક્ષ", marathi: "झाड", bihari: "गाछ" },
+      flower: { german: "Blume", spanish: "flor", telugu: "పువ్వు", tamil: "மலர்", malayalam: "പൂവ്", french: "fleur", indonesian: "bunga", punjabi: "ਫੁੱਲ", gujarati: "ફૂલ", marathi: "फूल", bihari: "फूल" },
+      house: { german: "Haus", spanish: "casa", telugu: "ఇల్లు", tamil: "வீடு", malayalam: "വീട്", french: "maison", indonesian: "rumah", punjabi: "ਘਰ", gujarati: "ઘર", marathi: "घर", bihari: "घर" },
+      love: { german: "Liebe", spanish: "amor", telugu: "ప్రేమ", tamil: "காதல்", malayalam: "പ്രേമം", french: "amour", indonesian: "cinta", punjabi: "ਪਿਆਰ", gujarati: "પ્રેમ", marathi: "प्रेम", bihari: "प्यार" },
+      school: { german: "Schule", spanish: "escuela", telugu: "పాఠశాల", tamil: "பள்ளி", malayalam: "സ്കൂൾ", french: "école", indonesian: "sekolah", punjabi: "ਸਕੂਲ", gujarati: "શાળા", marathi: "शाळा", bihari: "स्कूल" },
+      apple: { german: "Apfel", spanish: "manzana", telugu: "ఆపిల్", tamil: "ஆப்பிள்", malayalam: "ആപ്പിൾ", french: "pomme", indonesian: "apel", punjabi: "ਸੇਬ", gujarati: "સફરજન", marathi: "सफरचंद", bihari: "सेब" },
+      book: { german: "Buch", spanish: "libro", telugu: "పుస్తకం", tamil: "புத்தகம்", malayalam: "പുസ്തകം", french: "livre", indonesian: "buku", punjabi: "ਕਿਤਾਬ", gujarati: "પુસ્તક", marathi: "पुस्तक", bihari: "किताब" },
+      river: { german: "Fluss", spanish: "río", telugu: "నది", tamil: "ஆறு", malayalam: "നദി", french: "rivière", indonesian: "sungai", punjabi: "ਨਦੀ", gujarati: "નદી", marathi: "नदी", bihari: "नदी" },
+      mountain: { german: "Berg", spanish: "montaña", telugu: "పర్వతం", tamil: "மலை", malayalam: "മല", french: "montagne", indonesian: "gunung", punjabi: "ਪਹਾੜ", gujarati: "પર્વત", marathi: "पर्वत", bihari: "पहाड़" },
+      bird: { german: "Vogel", spanish: "pájaro", telugu: "పక్షి", tamil: "பறவை", malayalam: "പക്ഷി", french: "oiseau", indonesian: "burung", punjabi: "ਪੰਛੀ", gujarati: "પંખી", marathi: "पक्षी", bihari: "पक्षी" },
+      fish: { german: "Fisch", spanish: "pez", telugu: "చేప", tamil: "மீன்", malayalam: "മീനു", french: "poisson", indonesian: "ikan", punjabi: "ਮੱਛੀ", gujarati: "માછલી", marathi: "मासे", bihari: "मछली" },
+      king: { german: "König", spanish: "rey", telugu: "రాజు", tamil: "ராஜா", malayalam: "രാജാവ്", french: "roi", indonesian: "raja", punjabi: "ਰਾਜਾ", gujarati: "રાજા", marathi: "राजा", bihari: "राजा" },
+      queen: { german: "Königin", spanish: "reina", telugu: "రాణి", tamil: "ராணி", malayalam: "രാജ്ഞി", french: "reine", indonesian: "ratu", punjabi: "ਰਾਣੀ", gujarati: "રાણી", marathi: "राणी", bihari: "ਰਾਣੀ" },
+      child: { german: "Kind", spanish: "niño", telugu: "పిల్ల", tamil: "குழந்தை", malayalam: "കുഞ്ഞ്", french: "enfant", indonesian: "anak", punjabi: "ਬੱਚਾ", gujarati: "બાળક", marathi: "मुलगा/मुलगी", bihari: "बच्चा" },
+      family: { german: "Familie", spanish: "familia", telugu: "కుటుంబం", tamil: "குடும்பம்", malayalam: "കുടുംബം", french: "famille", indonesian: "keluarga", punjabi: "ਪਰਿਵਾਰ", gujarati: "કુટુંબ", marathi: "कुटुंब", bihari: "परिवार" }
+      
+    };
+
+    let currentWord = "";
+    let currentCorrectLang = "";
+    let currentCorrectAnswer = "";
+    let score = 0;
+    let streak = 0;
+    let mode = "normal";
+    let challengeTimer;
+    let challengeTime = 60;
+
+    function startGame(selectedMode) {
+      const KBCQ = new Audio("KBCQ.mp3");
+      mode = selectedMode;
+      score = 0;
+      streak = 0;
+      document.getElementById("score").innerText = "Score: 0";
+      document.getElementById("streak").innerText = "Streak: 0";
+      document.getElementById("home").classList.remove("active");
+      if (mode === "challenge") {
+        KBCQ.play();
+        startChallenge();
+      } else {
+        document.getElementById("game").classList.add("active");
+        KBCQ.play();
+        nextRound();
+      }
+    }
+
+    function getRandomWord() {
+      const keys = Object.keys(wordBank);
+      return keys[Math.floor(Math.random() * keys.length)];
+    }
+
+    function nextRound() {
+      const KBCQ = new Audio("KBCQ.mp3");
+      KBCQ.play();
+      document.getElementById("feedback").innerText = "";
+      document.getElementById("continueBtn").style.display = "none";
+
+      const word = getRandomWord();
+      currentWord = word;
+      const selectedLangs = [];
+      while (selectedLangs.length < 4) {
+        const lang = languages[Math.floor(Math.random() * languages.length)];
+        if (!selectedLangs.includes(lang)) selectedLangs.push(lang);
+      }
+      currentCorrectLang = selectedLangs[Math.floor(Math.random() * 4)];
+      currentCorrectAnswer = wordBank[word][currentCorrectLang];
+
+      document.getElementById("questionText").innerText = `Which one means "${word}" in ${capitalize(currentCorrectLang)}?`;
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+
+      selectedLangs.forEach(lang => {
+        const option = document.createElement("button");
+        option.innerText = wordBank[word][lang];
+        option.onclick = () => checkAnswer(wordBank[word][lang]);
+        optionsDiv.appendChild(option);
+      });
+    }
+
+    function checkAnswer(answer) {
+      const feedback = document.getElementById("feedback");
+      const continueBtn = document.getElementById("continueBtn");
+      const correctSound = new Audio("rightanswerbgm.mp3");
+      const wrongSound = new Audio("wronganswerbgm.mp3");
+      if (answer === currentCorrectAnswer) {
+        score += 10;
+        streak++;
+        correctSound.play();
+        feedback.innerText = `✅ Slay! You guessed it right. The answer was: ${currentCorrectAnswer}`;
+      } else {
+        streak = 0;
+        wrongSound.play();
+        feedback.innerText = `❌ Better luck next time. The correct answer was: ${currentCorrectAnswer}`;
+      }
+      document.getElementById("score").innerText = `Score: ${score}`;
+      document.getElementById("streak").innerText = `Streak: ${streak}`;
+      continueBtn.style.display = "inline-block";
+    }
+
+    function showWordList() {
+      const listDiv = document.getElementById("wordList");
+      if (listDiv.style.display === "block") {
+        listDiv.style.display = "none";
+        return;
+      }
+      let content = "<h3>Word List</h3><ul style='text-align:left;'>";
+      for (let word in wordBank) {
+        content += `<li><strong>${word}:</strong> ${languages.map(lang => wordBank[word][lang]).join(', ')}</li>`;
+      }
+      content += "</ul>";
+      listDiv.innerHTML = content;
+      listDiv.style.display = "block";
+    }
+
+    function startChallenge() {
+      document.getElementById("game").classList.add("active");
+      let timeLeft = challengeTime;
+      nextRound();
+      challengeTimer = setInterval(() => {
+        timeLeft--;
+        if (timeLeft <= 0) {
+          clearInterval(challengeTimer);
+          endChallenge();
+        }
+      }, 1000);
+    }
+
+    function endChallenge() {
+      document.getElementById("game").classList.remove("active");
+      document.getElementById("challengeEnd").classList.add("active");
+      document.getElementById("finalScore").innerText = `You scored ${score} points!`;
+      const compliment = document.getElementById("compliment");
+      if (score >= 70) {
+        compliment.innerText = "Incredible! You crushed it!🔥";
+      } else if (score >= 40) {
+        compliment.innerText = "Well done! You’ve got the hang of this! 💪";
+      } else {
+        compliment.innerText = "Great try! Keep exploring the Lingoverse. 🌍";
+      }
+    }
+
+    function goHome() {
+      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+      document.getElementById("home").classList.add("active");
+    }
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+  </script></body>
+</html>
